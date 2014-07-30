@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "info.mi-project.jeepdev"
+        id        = "info.mi-project.uashmamadev"
         version   = "1.0.0">
-    <name>Jeep mi-project info</name>
+    <name>Uashmama</name>
 
     <description>
         Data Capture App designed to create your own forms and use them on mobile.
