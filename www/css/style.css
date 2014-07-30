@@ -1,0 +1,43 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	background:#231F20;
+}
+.btnBigger{
+	text-align:center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size:25px;
+}
+.infoBox{
+	text-align:center;
+	margin:auto;
+	width: 80%;
+	padding: 15px;
+	margin-top: 10%;
+}
+.headingStyle{
+	margin-top: 15px;
+}
+.alignLeft{
+	text-align:left;
+	display:block;
+	padding:20px;
+	position:inherit !important; 
+}
+.alignCenter{
+	text-align:center;
+	display:block;
+	position:inherit !important; 
+}
+#totalSubs{
+	color: #F90;
+}
+.smallText{
+	font-size:10px;
+}
+a{
+	text-decoration: none;
+}

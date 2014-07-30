@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />
+<title>Select Project</title>
+<link rel="stylesheet" href="js/jquery.mobile-1.4.2.min.css">
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.mobile-1.4.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body onload="downloadDataUser();">
+<div data-role="page" data-theme="a">
+	<div data-role="header" data-theme="a">
+		<a href="index.html" data-icon="carat-l" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>
+		<h1>
+			UASHMAMA
+		</h1>
+	</div>
+	<input type="hidden" id='lat' value="lat"/>
+	<input type="hidden" id='long' value="long"/>
+
+	<div class="infoBox" data-role="main" data-theme="a">
+		<h2 class="headingStyle">Select Project</h2>
+		<div data-filter="true" data-filter-placeholder="Search for Project" id="project_for_data">
+		</div>
+	</div>
+	
+	<script src="js/dbLinkedFile.js"></script>
+    <script>
+	$( document ).bind( "mobileinit", function() {
+		// Make your jQuery Mobile framework configuration changes here!
+		$.support.cors = true;
+		$.mobile.allowCrossDomainPages = true;
+	});
+	</script>
+</div>
+</body>
+</html>

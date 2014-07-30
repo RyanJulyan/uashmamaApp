@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />
+<title>Jeep</title>
+<link rel="stylesheet" href="js/jquery.mobile-1.4.2.min.css">
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.mobile-1.4.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body onload="initDB();
+			loadServDataType();
+			loadServInputInfo();
+			loadServProject();
+			loadServProjInput();">
+<div data-role="page" data-theme="a">
+	<div data-role="header" data-theme="a">
+		<h1>
+			UASHMAMA
+		</h1>
+	</div>
+	<input type="hidden" id='lat' value="lat"/>
+	<input type="hidden" id='long' value="long"/>
+
+	<div class="infoBox" data-role="main" data-theme="a">
+		<h2 class="headingStyle">Choose Action</h2>
+		<button class="btnBigger" data-role="button" data-theme="a" data-icon="carat-r" data-iconpos="right" onclick="goUserChooseProj();"> Choose Project</button>
+        <button class="btnBigger" data-role="button" data-theme="a" data-icon="carat-r" data-iconpos="right" onclick="goUserDataSync();">Sync Data</button>
+	</div>
+	<script src="js/dbLinkedFile.js"></script>
+</div>
+</body>
+</html>
