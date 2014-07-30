@@ -11,7 +11,7 @@
 	  var AllUsersDataCap = [];
 	  
 	  // For Server
-	  var url_extention = "http://uashmama.mi-project.info/apponly/include/";
+	  var url_extention = "http://http://www.knowfun.org/apponly/include/";
 	  
 	  //For Local
 	  //var url_extention = "include/";
