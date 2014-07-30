@@ -41,3 +41,9 @@ body{
 a{
 	text-decoration: none;
 }
+input{
+	font-size:18px;
+}
+.ui-input-text{
+	color:#000;
+}
