@@ -559,7 +559,7 @@
 
         }
 		rowOutput += '</fieldset><br/>';
-		$("#projectItems").html('').append(rowOutput + '<input type="hidden" id="curuserid" value="0"/><input type="hidden" id="userSubnum" value="1"/><button data-role="button" data-theme="b" data-mini="true" data-icon="check" data-iconpos="right" onclick="updateUserSubMission();">Sign Up</button>').trigger('create');
+		$("#projectItems").html('').append(rowOutput + '<input type="hidden" id="curuserid" value="0"/><input type="hidden" id="userSubnum" value="1"/><button data-role="button" data-theme="a" data-mini="true" data-icon="check" data-iconpos="right" onclick="updateUserSubMission();">Sign Up</button>').trigger('create');
       
 		
 	  }
@@ -685,14 +685,14 @@
       }
 	  
 	  function renderProjectsForUser(row) {
-        return '<button class="btnBigger" data-role="button" data-theme="b" data-icon="carat-r" data-iconpos="right" onclick="goUserProj('+row.id+');"> '+ row.name  +'</button>';
+        return '<button class="btnBigger" data-role="button" data-theme="a" data-icon="carat-r" data-iconpos="right" onclick="goUserProj('+row.id+');"> '+ row.name  +'</button>';
       }
 	  
 	  function renderProjectsForData(row) {
-        return '<button class="btnBigger" data-role="button" data-theme="b" data-icon="carat-r" data-iconpos="right" onclick="goViewProjData('+row.id+');">View '+ row.name  +' Data </button>';
+        return '<button class="btnBigger" data-role="button" data-theme="a" data-icon="carat-r" data-iconpos="right" onclick="goViewProjData('+row.id+');">View '+ row.name  +' Data </button>';
       }
 	  function renderProjectsUser(row) {
-        return '<button class="btnBigger" data-role="button" data-theme="b" data-icon="carat-r" data-iconpos="right" on>'+ row.name  +'</button>';
+        return '<button class="btnBigger" data-role="button" data-theme="a" data-icon="carat-r" data-iconpos="right" on>'+ row.name  +'</button>';
       }
 	  
 	  function renderProjectsSelec(row) {
