@@ -8,6 +8,11 @@
 <script src="js/jquery-1.10.2.min.js"></script>
 <script src="js/jquery.mobile-1.4.2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<script>
+	$( document ).ready(function() {
+	  
+	});
+</script>
 </head>
 
 <body onLoad="init();">
@@ -98,7 +103,29 @@
 			jeep.webdb.onError
 		);
 	 });
-	 	
+	 	document.getElementById("name").value = '';
+		document.getElementById("surname").value = '';
+		document.getElementById("email").value = '';
+		document.getElementById("cell").value = '';
+		document.getElementById("question").value = '';
+		var title = document.getElementById('title').getElementsByTagName('input');
+
+		for (var i = 0; i < title.length; i++) {
+			if(title[i].getAttribute("type") == "radio"){
+			
+				$( "#"+title[i].id ).prop( "checked", false ).checkboxradio("refresh");
+			}
+		}
+		
+		
+		var opt = document.getElementById('opt').getElementsByTagName('input');
+
+		for (var i = 0; i < opt.length; i++) {
+			if(opt[i].getAttribute("type") == "radio"){
+			
+				$( "#"+opt[i].id ).prop( "checked", false ).checkboxradio("refresh");
+			}
+		}
 	}
 	
 	jeep.webdb.onSuccess = function(tx, r) {
@@ -107,7 +134,7 @@
 	
 	jeep.webdb.onError = function(tx, e) {
         alert("There has been an capturing tha data \n error: " + e.message);
-      }
+    }
 	
 	function init() {
 		try {
@@ -207,12 +234,8 @@
 				alert("Error Uploading to Server \n An error " + xhr.status + " occured. \n Request Status: " + xhr.statusText);
 			}
 		});
-		
-		
-		
-	  }
-    
-    </script>
+	}
+</script>
 </div>
 </body>
 </html>
