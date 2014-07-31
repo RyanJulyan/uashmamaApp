@@ -10,26 +10,209 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
-<body onload="initDB();
-			loadServDataType();
-			loadServInputInfo();
-			loadServProject();
-			loadServProjInput();">
+<body onLoad="init();">
 <div data-role="page" data-theme="a">
 	<div data-role="header" data-theme="a">
 		<h1>
 			UASHMAMA
 		</h1>
 	</div>
-	<input type="hidden" id='lat' value="lat"/>
-	<input type="hidden" id='long' value="long"/>
 
 	<div class="infoBox" data-role="main" data-theme="a">
-		<h2 class="headingStyle">Choose Action</h2>
-		<button class="btnBigger" data-role="button" data-theme="a" data-icon="carat-r" data-iconpos="right" onclick="goUserChooseProj();"> Choose Project</button>
-        <button class="btnBigger" data-role="button" data-theme="a" data-icon="carat-r" data-iconpos="right" onclick="goUserDataSync();">Sync Data</button>
+		<img src="projects/1/warrior5.png" />
+        <form type="post" id="projectItems" onsubmit="jeep.webdb.addUser(); return false;">
+        	<fieldset data-role="controlgroup" data-type="horizontal">
+            	<input type='radio' name='title' id='mr'required><label for="mr">Mr</label>
+                <input type='radio' name='title' id='mrs'required><label for="mrs">Mrs</label>
+                <input type='radio' name='title' id='ms'required><label for="ms">Ms</label>
+                <input type='radio' name='title' id='dr'required><label for="dr">Dr</label>
+                <input type='radio' name='title' id='prof'required><label for="prof">Prof</label>
+                <input type='radio' name='title' id='other'required><label for="other">Other</label>
+            </fieldset>
+            <fieldset data-role="controlgroup">
+                <input type='text' name='name' id='name' placeholder="Name" required>
+                <input type='text' name='surname' id='surname' placeholder="Surname" required>
+                <input type='email' name='email' id='email' placeholder="Email" required>
+                <input type='tel' name='cell' id='cell' placeholder="cell" required>
+                <input type='text' name='question' id='question' placeholder="What is your Favourate Uashmama Product" required>
+            </fieldset>
+            <fieldset data-role="controlgroup" data-type="horizontal">
+            	<input type='radio' name='opt' id='opt_in'required><label for="opt_in">Opt In</label>
+                <input type='radio' name='opt' id='opt_out'required><label for="opt_out">Opt Out</label>
+            </fieldset>
+            <button data-role="button" data-theme="a" data-mini="true" data-icon="check" data-iconpos="right">Sign Up</button>
+        </form>
 	</div>
-	<script src="js/dbLinkedFile.js"></script>
+	<script>
+	
+	var jeep = {};
+	jeep.webdb = {};
+	jeep.webdb.db = null;
+	
+	$( document ).bind( "mobileinit", function() {
+	  // Make your jQuery Mobile framework configuration changes here!
+	  $.support.cors = true;
+	  $.mobile.allowCrossDomainPages = true;
+	});
+	
+	
+	jeep.webdb.open = function() {
+	var shortname = "uashmamaSimple";
+	var version =  "1.0";
+	var description =  "uashmamaSimple";
+	var dbSize = 5 * 1024 * 1024; // 5MB
+	jeep.webdb.db = openDatabase(shortname, version, description, dbSize);
+	}
+	
+	// Create All Tables
+	jeep.webdb.createTables = function() {
+	var db = jeep.webdb.db;
+	// Create data_type Table
+	db.transaction(function(tx) {
+	  tx.executeSql("CREATE TABLE IF NOT EXISTS uashmama('id' INTEGER PRIMARY KEY ASC, 'name' VARCHAR(255), 'surname' VARCHAR(255), 'email' VARCHAR(255), 'cell' VARCHAR(255), 'question' VARCHAR(255), 'title' VARCHAR(255), 'opt' VARCHAR(255))", []);
+	});
+	}
+	
+	jeep.webdb.addUser = function() {
+	
+	var db = jeep.webdb.db;
+	db.transaction(function(tx){
+		
+		var name = document.getElementById("name").value;
+		
+		var surname = document.getElementById("surname").value;
+		
+		var email = document.getElementById("email").value;
+		
+		var cell = document.getElementById("cell").value;
+		
+		var question = document.getElementById("question").value;
+		
+		var title = document.querySelector('input[name="title"]:checked').value;
+		
+		var opt = document.querySelector('input[name="opt"]:checked').value;
+		
+		tx.executeSql("INSERT INTO uashmama(name, surname, email, cell, question, title, opt) VALUES (?,?,?,?, ?,?,?)",
+			[name, surname, email, cell, question, title, opt],
+			jeep.webdb.onUserSuccess,
+			jeep.webdb.onError
+		);
+	 });
+	 	
+	}
+	
+	jeep.webdb.onSuccess = function(tx, r) {
+		alert("Data Captured");
+	}
+	
+	jeep.webdb.onError = function(tx, e) {
+        alert("There has been an capturing tha data \n error: " + e.message);
+      }
+	
+	function init() {
+		try {
+			if (!window.openDatabase) {
+				alert('Databases are not supported in this browser.');
+			} else {
+				jeep.webdb.open();
+				jeep.webdb.createTables();
+			}
+		} catch(e) {
+			// Error handling code goes here.
+			if (e == 0){
+				// UNKNOWN_ERR
+				alert("The transaction failed for reasons unrelated to the database.");
+			}
+			else if(e == 1){
+				// DATABASE_ERR
+				alert("The statement failed for database reasons.");
+			}
+			else if (e == 2) {
+				// Version number mismatch.
+				alert("Invalid database version.");
+			}
+			else if(e == 3){
+				// TOO_LARGE_ERR
+				alert("The statement failed because the data returned from the database was too large.");
+			}
+			else if(e == 4){
+				// QUOTA_ERR
+				alert("The statement failed because there was not enough remaining storage space, or the storage quota was reached and the user declined to give more space to the database.");
+			}
+			else if(e == 5){
+				// SYNTAX_ERR
+				alert("The statement failed because there was not enough remaining storage space, or the storage quota was reached and the user declined to give more space to the database.");
+			}
+			else if(e == 6){
+				// CONSTRAINT_ERR
+				alert("Statement failed due to a constraint failure.");
+			}
+			else if(e == 7){
+				// TIMEOUT_ERR
+				alert("A lock for the transaction could not be obtained in a reasonable time.");
+			}
+			else {
+				alert("Unknown error "+e+".");
+			}
+			return;
+		}
+	}
+	
+	var url_extention = "";
+	
+	function setServProjInput(){
+		
+		var name = document.getElementById("name").value;
+		
+		var surname = document.getElementById("surname").value;
+		
+		var email = document.getElementById("email").value;
+		
+		var cell = document.getElementById("cell").value;
+		
+		var question = document.getElementById("question").value;
+		
+		var title = document.querySelector('input[name="title"]:checked').value;
+		
+		var opt = document.querySelector('input[name="opt"]:checked').value;
+		
+		var formdata = new FormData();
+		
+		formdata.append("name", name);
+		formdata.append("surname", surname);
+		formdata.append("email", email);
+		formdata.append("cell", cell);
+		formdata.append("question", question);
+		formdata.append("title", title);
+		formdata.append("opt", opt);
+		
+		console.log(formdata);
+		
+		$.ajax({
+			async: false,
+			type: "POST",
+			data:formdata,
+			crossDomain: true,
+			cache: false,
+			url: url_extention+"set_inputs.php",
+			processData: false, // Don't process the files
+			contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+			beforeSend : function() {$.mobile.loading('show')},
+    		complete   : function() {$.mobile.loading('hide')},
+			success: function(data, textStatus, jqXHR){
+				console.log(data);
+				alert("Uploaded to Server");
+			},
+			error:function(xhr){
+				alert("Error Uploading to Server \n An error " + xhr.status + " occured. \n Request Status: " + xhr.statusText);
+			}
+		});
+		
+		
+		
+	  }
+    
+    </script>
 </div>
 </body>
 </html>
