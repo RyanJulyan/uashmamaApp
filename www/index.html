@@ -102,30 +102,25 @@
 			jeep.webdb.onUserSuccess,
 			jeep.webdb.onError
 		);
+		
+		var elements = document.getElementById('projectItems').getElementsByTagName('input');
+
+		for (var i = 0; i < elements.length; i++) {
+			if(elements[i].getAttribute("type") == "radio" || elements[i].getAttribute("type") == "checkbox"){
+				//elements[i].checked = false;
+				
+				$( "#"+elements[i].id ).prop( "checked", false ).checkboxradio("refresh");
+			}
+			else if(elements[i].getAttribute("type") == "text"){
+				elements[i].value = '';
+			}
+			else{
+				elements[i].value = '';
+			}
+		}
+		
 	 });
-	 	document.getElementById("name").value = '';
-		document.getElementById("surname").value = '';
-		document.getElementById("email").value = '';
-		document.getElementById("cell").value = '';
-		document.getElementById("question").value = '';
-		var title = document.getElementById('title').getElementsByTagName('input');
-
-		for (var i = 0; i < title.length; i++) {
-			if(title[i].getAttribute("type") == "radio"){
-			
-				$( "#"+title[i].id ).prop( "checked", false ).checkboxradio("refresh");
-			}
-		}
-		
-		
-		var opt = document.getElementById('opt').getElementsByTagName('input');
-
-		for (var i = 0; i < opt.length; i++) {
-			if(opt[i].getAttribute("type") == "radio"){
-			
-				$( "#"+opt[i].id ).prop( "checked", false ).checkboxradio("refresh");
-			}
-		}
+	 	
 	}
 	
 	jeep.webdb.onSuccess = function(tx, r) {
