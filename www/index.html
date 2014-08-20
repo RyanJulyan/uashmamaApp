@@ -18,6 +18,7 @@
 <body onLoad="init();">
 <div data-role="page" data-theme="a">
 	<div data-role="header" data-theme="a">
+    	<div style="height:18px;"</div>
     	<button onClick="getAllUserDataCap();">Upload Data</button>
 		<h1>
 			UASHMAMA
@@ -280,19 +281,12 @@
 			beforeSend : function() {$.mobile.loading('show')},
     		complete   : function() {$.mobile.loading('hide')},
 			success: function(data, textStatus, jqXHR){
-				//console.log(data);
-				//alert("Captured Data Uploaded to Server")
-				console.log(data);
-				// $('#Data_Sync').html('').append('Captured Submissions Have Been Uploaded').trigger('create');
-				/*
+				
 				jeep.webdb.open();
 				jeep.webdb.db.transaction(function(tx) {
-					tx.executeSql("DROP TABLE user", []);
-					tx.executeSql("CREATE TABLE IF NOT EXISTS user('id' INTEGER PRIMARY KEY ASC, 'name' VARCHAR(255), 'date_time_in' DATETIME, 'cur_lat' VARCHAR(255), 'cur_long' VARCHAR(255), 'date_time_out' DATETIME)", []);
-					tx.executeSql("DROP TABLE project_data_capture", []);
-					tx.executeSql("CREATE TABLE IF NOT EXISTS project_data_capture('id' INTEGER PRIMARY KEY ASC, 'proj_input_id' INTEGER, 'user_id' INTEGER, 'user_submission_num' INTEGER, 'project_id' INTEGER, 'value' VARCHAR(255), 'cur_lat' VARCHAR(255), 'cur_long' VARCHAR(255), 'date_time_created' DATETIME)", []);
+					tx.executeSql("DROP TABLE uashmama", []);
+					tx.executeSql("CREATE TABLE IF NOT EXISTS uashmama('id' INTEGER PRIMARY KEY ASC, 'name' VARCHAR(255), 'surname' VARCHAR(255), 'email' VARCHAR(255), 'cell' VARCHAR(255), 'question' VARCHAR(255), 'title' VARCHAR(255), 'opt' VARCHAR(255))", []);
 				});
-				*/
 				
 			},
 			error:function(xhr){
