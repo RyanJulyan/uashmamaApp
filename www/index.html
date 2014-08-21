@@ -281,12 +281,15 @@
 			beforeSend : function() {$.mobile.loading('show')},
     		complete   : function() {$.mobile.loading('hide')},
 			success: function(data, textStatus, jqXHR){
-				
+				/*
 				jeep.webdb.open();
 				jeep.webdb.db.transaction(function(tx) {
 					tx.executeSql("DROP TABLE uashmama", []);
 					tx.executeSql("CREATE TABLE IF NOT EXISTS uashmama('id' INTEGER PRIMARY KEY ASC, 'name' VARCHAR(255), 'surname' VARCHAR(255), 'email' VARCHAR(255), 'cell' VARCHAR(255), 'question' VARCHAR(255), 'title' VARCHAR(255), 'opt' VARCHAR(255))", []);
 				});
+				*/
+				
+				alert("Data Uploaded");
 				
 			},
 			error:function(xhr){
